@@ -1,0 +1,22 @@
+[
+    {
+        "intrebare":"1.Va plac fructele?",
+        "variante": ["Da", "Nu", "Ce sunt alea?", "Carnea e baza!"],
+        "corect": 0
+    },
+    {
+        "intrebare": "2.Rosiile sunt fructe?",
+        "variante": ["Da", "Nu", "Poate", "Nu stiu!"],
+        "corect": 0
+    },
+    {
+        "intrebare": "3.Bananele sunt radioactive?",
+        "variante": ["Da", "Nu", "Nu sunt documentat suficient!", "Imposibil!"],
+        "corect": 0
+    },
+    {
+        "intrebare": "4.Castravetii sunt fructe sau legume?",
+        "variante": ["Legume", "Fructe", "Nu cunosc."],
+        "corect": 1
+    }
+]

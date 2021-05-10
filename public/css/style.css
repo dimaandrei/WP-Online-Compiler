@@ -1,0 +1,141 @@
+body {
+    margin: 0;
+    font-family: "Lato", sans-serif;
+}
+
+body, html {
+    height: 100%;
+}
+
+.sidenavCompiler {
+    height: 100%;
+    width: 60px;
+    position: fixed;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    display: block;
+}
+
+.sidenavCompiler a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 12px;
+    color: #818181;
+    display: block;
+}
+
+.sidenavCompiler a:hover {
+    color: #f1f1f1;
+}
+
+.main {
+    margin-left: 55px;
+    /* Same as the width of the sidenav */
+    font-size: 20px;
+    /* Increased text to enable scrolling */
+    padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenavCompiler {
+        padding-top: 15px;
+    }
+    .sidenavCompiler a {
+        font-size: 10px;
+    }
+}
+
+.wrapper {
+    height: 100%;
+    background: #1c2130;
+}
+
+.header {
+    height: 102px;
+    background: rgb(31, 32, 35);
+    padding: 10px;
+    z-index: 1;
+}
+
+.header h1 {
+    color: antiquewhite;
+    text-align: center;
+}
+
+.menuNav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.menuNav li {
+    float: up;
+}
+
+.menuNav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.menuNav li a:hover {
+    background-color: #111;
+}
+
+.menuNav .active {
+    background-color: red;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 720px;
+}
+
+/* Clear floats after the columns */
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+    }
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: red;
+    color: white;
+    text-align: center;
+}
+
+textarea {
+    resize: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#console {
+    outline: none;
+}
