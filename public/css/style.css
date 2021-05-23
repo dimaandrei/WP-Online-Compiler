@@ -5,6 +5,9 @@ body {
 
 body, html {
     height: 100%;
+    width: 100%;
+    background-color: #1c2130;
+    /*overflow-y: hidden;*/
 }
 
 .sidenavCompiler {
@@ -52,6 +55,7 @@ body, html {
 .wrapper {
     height: 100%;
     background: #1c2130;
+    background-repeat: repeat-y;
 }
 
 .header {
@@ -97,14 +101,31 @@ body, html {
 * {
     box-sizing: border-box;
 }
+.sidenavCompiler .active a{
+    color:#f1f1f1;
+}
+.column0 {
+    float: left;
+    width: 3%;
+    padding: 10px;
+    height: 65vh;
+    border-right: none;
+}
 
-.column {
+.column1 {
+    float: left;
+    width: 45%;
+    padding: 10px;
+    height: 65vh;
+    border-left: none;
+}
+
+.column2 {
     float: left;
     width: 50%;
     padding: 10px;
-    height: 720px;
+    height: 65vh;
 }
-
 /* Clear floats after the columns */
 
 .row:after {
@@ -134,8 +155,62 @@ footer {
 textarea {
     resize: none;
     border: 1px solid rgba(255, 255, 255, 0.2);
+    color:beige;
+    font-size:16px;
+    margin-top: 45px;
+}
+textarea:focus, input:focus{
+    outline: 0;
+}
+#console {
+    /*margin-top: 21px;*/
+    font-size:16px;
+    outline: none;
 }
 
-#console {
-    outline: none;
+.btnRunScript {
+    margin: 0;
+    position: absolute;
+    left: 48%;
+    -ms-transform: translateX(-30%);
+    transform: translateX(-30%);
+    border-radius: 4px;
+    background-color: #f4511e;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 150px;
+    height: 50px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.btnRunScript span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    padding-top: -30px;
+    transition: 0.5s;
+    top:-10px;
+}
+
+.btnRunScript span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.btnRunScript:hover span {
+    padding-right: 25px;
+}
+
+.btnRunScript:hover span:after {
+    opacity: 1;
+    right: 0;
 }
