@@ -27,10 +27,11 @@
                             To</a></li>
                     <li id="about" class="inactive"><a href="#"
                             onclick="schimbaContinut('about','about'); return false">About</a></li>
+                    onchange(), cate \n?
 -->
-                    <li id="home" class="inactive"><a href="/home">Home</a></li>
-                    <li id="how" class="inactive"><a href="/how" >How To</a></li>
-                    <li id="about" class="inactive"><a href="/about">About</a></li>
+                    <li id="home" class="<%= (activ==0)? "active": "inactive" %>"><a href="/home">Home</a></li>
+                    <li id="how" class="<%= (activ==1)? "active": "inactive" %>"><a href="/how" >How To</a></li>
+                    <li id="about" class="<%= (activ==2)? "active": "inactive" %>"><a href="/about">About</a></li>
                      
                 </ul>
             </nav>

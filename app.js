@@ -27,21 +27,25 @@ app.get('/favicon.ico', (req, res) => {
 });
 
 app.get('/home', (req, res) => {
+	//res.locals.activ=0;
 	res.render('home', {
-		title: "Home"
+		title: "Home",
+		activ:0	
 	})
 });
 
 app.get('/how', (req, res) => {
 	res.render('how', {
-		title: "How to"
+		title: "How to",
+		activ:1
 	});
 });
 
 app.get('/about', (req, res) => {
 	res.render('about',
 		{
-			title: "About"
+			title: "About",
+			activ:2
 		});
 });
 
