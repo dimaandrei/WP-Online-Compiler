@@ -7,6 +7,41 @@ const app = express();
 const port = 1234;
 const fs = require('fs');
 const { Console } = require('console');
+
+var testPy;
+var testC;
+var testCPP;
+var testJava;
+
+fs.readFile('./SavedCode/test.py', 'utf8', (err, data) => {
+	if (err) {
+		console.error(err)
+		return
+	}
+	testPy = data;
+});
+fs.readFile('./SavedCode/test.c', 'utf8', (err, data) => {
+	if (err) {
+		console.error(err)
+		return
+	}
+	testC = data;
+});
+fs.readFile('./SavedCode/test.cpp', 'utf8', (err, data) => {
+	if (err) {
+		console.error(err)
+		return
+	}
+	testCPP = data;
+});
+fs.readFile('./SavedCode/testJava.txt', 'utf8', (err, data) => {
+	if (err) {
+		console.error(err)
+		return
+	}
+	testJava = data;
+});
+
 var codeLanguage = 0;
 // directorul 'views' va conține fișierele .ejs (html + js executat la server)
 app.set('view engine', 'ejs');
@@ -26,12 +61,16 @@ app.get('/favicon.ico', (req, res) => {
 	res.sendFile("/home/ix_andrei/Documents/Facultate/AN3SEM2/OnlineCompilerPW/PW-Online-Compiler/public/images/favicon.ico");
 });
 
+
+
+
+
 app.get('/home', (req, res) => {
 	//res.locals.activ=0;
 	res.render('home', {
 		title: "Home",
 		activ: 0,
-		inputCode: null,
+		inputCode: testPy,
 		outputResult: null,
 		lineNr: null,
 		language: codeLanguage,
@@ -71,10 +110,18 @@ app.post('/run-input', (req, res) => {
 		default:
 			extension = "py";
 	}
-	fs.writeFile('./SavedCode/main' + extension, req.body.inputCode, function (err) {
-		if (err)
-			return console.log(err);
-	});
+	if (extension != ".java") {
+		fs.writeFile('./SavedCode/main' + extension, req.body.inputCode, function (err) {
+			if (err)
+				return console.log(err);
+		});
+	}
+	else{
+		fs.writeFile('./SavedCode/Main' + extension, req.body.inputCode, function (err) {
+			if (err)
+				return console.log(err);
+		});
+	}
 	var dataToSend = null;
 	if (codeLanguage === 0) {
 		const childPython = child_process.spawn('python', ['./SavedCode/main.py']);
@@ -196,6 +243,53 @@ app.post('/run-input', (req, res) => {
 				});
 			}
 		});
+	} else if (codeLanguage === 3) {
+		const childJava = child_process.spawn('javac', ['./SavedCode/Main.java'])
+		childJava.stdout.on('data', function (data) {
+			//console.log(`stdout:${data}`);
+			dataToSend = data.toString();
+		});
+
+		childJava.stderr.on('data', function (data) {
+			//console.log(`stderr:${data}`);
+			dataToSend += data.toString();
+		});
+
+		childJava.on('close', (code) => {
+			//console.log(`child process close all stdio with code ${code}`);
+			if (dataToSend === null) {
+				const program = child_process.spawn('java', ['-classpath','./SavedCode/','Main'])
+				program.stdout.on('data', function (data) {
+					//console.log(`stdout:${data}`);
+					dataToSend = data.toString();
+				});
+
+				program.stderr.on('data', function (data) {
+					console.log(`stderr:${data}`);
+					dataToSend += data.toString();
+				});
+				program.on('close', (code) => {
+					//console.log(dataToSend);
+					res.render('home', {
+						title: "Home",
+						activ: 0,
+						inputCode: req.body.inputCode,
+						outputResult: dataToSend,
+						lineNr: req.body.lines,
+						language: codeLanguage,
+					});
+				});
+			} else {
+				res.render('home', {
+					title: "Home",
+					activ: 0,
+					inputCode: req.body.inputCode,
+					outputResult: dataToSend,
+					lineNr: req.body.lines,
+					language: codeLanguage,
+				});
+			}
+		});
 	}
 
 });
@@ -205,7 +299,7 @@ app.get('/python', (req, res) => {
 	res.render('home', {
 		title: "Home",
 		activ: 0,
-		inputCode: null,
+		inputCode: testPy,
 		outputResult: null,
 		lineNr: req.body.lines,
 		language: 0,
@@ -217,7 +311,7 @@ app.get('/c', (req, res) => {
 	res.render('home', {
 		title: "Home",
 		activ: 0,
-		inputCode: null,
+		inputCode: testC,
 		outputResult: null,
 		lineNr: req.body.lines,
 		language: 1,
@@ -229,7 +323,7 @@ app.get('/cplus', (req, res) => {
 	res.render('home', {
 		title: "Home",
 		activ: 0,
-		inputCode: null,
+		inputCode: testCPP,
 		outputResult: null,
 		lineNr: req.body.lines,
 		language: 2,
@@ -241,7 +335,7 @@ app.get('/java', (req, res) => {
 	res.render('home', {
 		title: "Home",
 		activ: 0,
-		inputCode: null,
+		inputCode: testJava,
 		outputResult: null,
 		lineNr: req.body.lines,
 		language: 3,
