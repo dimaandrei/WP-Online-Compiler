@@ -10,9 +10,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var s1 = document.getElementById('inputCode');
     var s2 = document.getElementById('lines');
+    var s3 = document.getElementById('highlighting')
     function select_scroll(e) {
 
         s2.scrollTop = s1.scrollTop;
+        s3.scrollTop = s1.scrollTop;
+        s3.scrollLeft = s1.scrollLeft ;
     }
     s1.addEventListener('scroll', select_scroll, false);
 
@@ -122,3 +125,11 @@ function loadDoc() {
     xhttp.open("GET", "ajax_info.txt", true);
     xhttp.send();
 }
+
+function update(text) {
+    let result_element = document.querySelector("#highlighting-content");
+    // Update code
+    result_element.innerHTML = text.replace(new RegExp("&", "g"), "&").replace(new RegExp("<", "g"), "&lt;"); /* Global RegExp */
+    // Syntax Highlight
+    Prism.highlightElement(result_element);
+  }

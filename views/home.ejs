@@ -1,28 +1,41 @@
 <div class="home">
     <div class="sidenavCompiler">
         <ul style="list-style-type:none;margin-left: -40px;">
-            <li id="python" class="<%= (language==0)? "active": "inactive" %>"><a href="/python">Py</a></li>
-            <li id="c" class="<%= (language==1)? "active": "inactive" %>"><a href="/c">C</a></li>
-            <li id="cplus" class="<%= (language==2)? "active": "inactive" %>"><a  href="/cplus">C++</a></li>
-            <li id="java" class="<%= (language==3)? "active": "inactive" %>"><a  href="java">Java</a></li>
+            <li id="python" class="<%= (language==0)? " active": "inactive" %>"><a href="/python">Py</a></li>
+            <li id="c" class="<%= (language==1)? " active": "inactive" %>"><a href="/c">C</a></li>
+            <li id="cplus" class="<%= (language==2)? " active": "inactive" %>"><a href="/cplus">C++</a></li>
+            <li id="java" class="<%= (language==3)? " active": "inactive" %>"><a href="java">Java</a></li>
         </ul>
     </div>
 
     <div class="row">
         <form method="POST" action="/run-input">
-            <textarea class="column0" id="lines" name="lines" spellcheck="false" style="overflow:hidden;background-color: rgba(0, 0, 0, 0);"
-            readonly><%if(lineNr){%><%=lineNr%><%}%></textarea>
-            <%if(inputCode){%>
-                <textarea onscroll="scrollFunction()" id="inputCode" name="inputCode" class="column1" class="editor" spellcheck="false"
-                style="background-color: rgba(0, 0, 0, 0);"><%= inputCode %></textarea>
-            <%}else{%>
-                <textarea onscroll="scrollFunction()" id="inputCode" name="inputCode" class="column1" class="editor" spellcheck="false"
-                style="background-color: rgba(0, 0, 0, 0);"></textarea>
-            <%}%>
-            
-            <button class="btnRunScript"  type="submit">
-                <span>Run</span>
-            </button>
+
+            <textarea class="column0" id="lines" name="lines" spellcheck="false"
+                style="overflow:hidden;background-color: rgba(0, 0, 0, 0);"
+                readonly><%if(lineNr){%><%=lineNr%><%}%></textarea>
+
+
+            <div id ="container">
+                <%if(inputCode){%>
+                    <textarea onscroll="scrollFunction()" id="inputCode" name="inputCode" class="column1 editor"
+                        oninput="update(this.value);" spellcheck="false"
+                        style="background-color: rgba(0, 0, 0, 0);"><%= inputCode %></textarea>
+                    <%}else{%>
+                        <textarea onscroll="scrollFunction()" id="inputCode" name="inputCode" class="column1 editor"
+                            oninput="update(this.value);" spellcheck="false"
+                            style="background-color: rgba(0, 0, 0, 0);"></textarea>
+                        <%}%>
+
+
+
+                            <button class="btnRunScript" type="submit">
+                                <span>Run</span>
+                            </button>
+                <pre id="highlighting" aria-hidden="true" width="30">
+                    <code class="language-cpp" id="highlighting-content"></code>
+                </pre>
+            </div>
         </form>
 
         <textarea class="column2" id="console" spellcheck="false" style="background-color: rgba(0, 0, 0, 0);"

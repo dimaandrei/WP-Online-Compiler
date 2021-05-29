@@ -1,8 +1,7 @@
-// Online Java Compiler
-// Use this editor to write, compile and run your Java code online
+# Online Python compiler (interpreter) to run Python online.
+# Write Python 3 code in this online editor and run it.
+def main():
+    print("Hello world")
 
-public class Main{
-    public static void main(String[] args) {
-        System.out.println("Hello, World!"); 
-    }
-}
+if __name__ == "__main__":
+    main()

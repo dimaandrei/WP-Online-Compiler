@@ -101,31 +101,56 @@ body, html {
 * {
     box-sizing: border-box;
 }
-.sidenavCompiler .active a{
-    color:#f1f1f1;
+
+.sidenavCompiler .active a {
+    color: #f1f1f1;
 }
+
 .column0 {
     float: left;
-    width: 3%;
+    width: 4%;
     padding: 10px;
     height: 65vh;
     border-right: none;
 }
 
-.column1 {
+#inputCode {
     float: left;
-    width: 45%;
+    width: 88vh;
     padding: 10px;
     height: 65vh;
     border-left: none;
+    position: absolute;
+    left:0;
+    margin-left: 56px;
+}
+
+#highlighting {
+    position: absolute;
+    float: left;
+    width: 87vh;
+    padding: 10px;
+    height: 65vh;
+    margin-top: 46px;
+    background-color: transparent;
+    
+    left:0;
+    margin-left: 56px;
+}
+
+#container {
+    position: relative;
 }
 
 .column2 {
-    float: left;
-    width: 50%;
+    float: right;
+    width: 52%;
     padding: 10px;
     height: 65vh;
+    position: relative;
+    
 }
+
 /* Clear floats after the columns */
 
 .row:after {
@@ -155,16 +180,18 @@ footer {
 textarea {
     resize: none;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    color:beige;
-    font-size:16px;
+    color: beige;
+    font-size: 16px;
     margin-top: 45px;
 }
-textarea:focus, input:focus{
+
+textarea:focus, input:focus {
     outline: 0;
 }
+
 #console {
     /*margin-top: 21px;*/
-    font-size:16px;
+    font-size: 16px;
     outline: none;
 }
 
@@ -172,8 +199,8 @@ textarea:focus, input:focus{
     margin: 0;
     position: absolute;
     left: 48%;
-    -ms-transform: translateX(-30%);
-    transform: translateX(-30%);
+    -ms-transform: translateX(-51%);
+    transform: translateX(-51%);
     border-radius: 4px;
     background-color: #f4511e;
     border: none;
@@ -186,6 +213,7 @@ textarea:focus, input:focus{
     transition: all 0.5s;
     cursor: pointer;
     margin: 5px;
+    z-index: 2;
 }
 
 .btnRunScript span {
@@ -194,7 +222,7 @@ textarea:focus, input:focus{
     position: relative;
     padding-top: -30px;
     transition: 0.5s;
-    top:-10px;
+    top: -10px;
 }
 
 .btnRunScript span:after {
@@ -213,4 +241,66 @@ textarea:focus, input:focus{
 .btnRunScript:hover span:after {
     opacity: 1;
     right: 0;
+}
+
+#inputCode, #highlighting, #highlighting * {
+    /* Also add text styles to highlighting tokens */
+    font-size: 14pt;
+    font-family: monospace;
+    line-height: normal;
+}
+#lines{
+    font-size: 14pt;
+    font-family: monospace;
+    line-height: normal;
+}
+#inputCode {
+    z-index: 1;
+}
+
+#highlighting {
+    z-index: 0;
+    border: 0;
+    resize: none;
+}
+
+#inputCode {
+    color: transparent;
+    background: transparent;
+    caret-color: white;
+    /* Or choose your favorite color */
+}
+
+#inputCode {
+    resize: none;
+}
+
+#inputCode, #highlighting {
+    overflow: auto;
+    white-space: nowrap;
+    /* Allows textarea to scroll horizontally */
+}
+
+pre {
+    /*
+    white-space: -moz-pre-wrap; /* Mozilla, supported since 1999 
+    white-space: -pre-wrap; /* Opera 
+    white-space: -o-pre-wrap; /* Opera 
+    white-space: pre-wrap; /* CSS3 - Text module (Candidate Recommendation) http://www.w3.org/TR/css3-text/#white-space 
+    word-wrap: break-word; /* IE 5.5+ 
+    white-space: pre-line;*/
+    text-align: left;
+}
+
+code {
+    white-space: -moz-pre-wrap;
+    /* Mozilla, supported since 1999 */
+    white-space: -pre-wrap;
+    /* Opera */
+    white-space: -o-pre-wrap;
+    /* Opera */
+    white-space: pre-wrap;
+    /* CSS3 - Text module (Candidate Recommendation) http://www.w3.org/TR/css3-text/#white-space */
+    word-wrap: break-word;
+    /* IE 5.5+ */
 }
