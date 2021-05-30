@@ -3,6 +3,7 @@ const expressLayouts = require('express-ejs-layouts');
 const bodyParser = require('body-parser')
 const child_process = require('child_process');
 const app = express();
+var dir =  process.cwd();
 
 const port = 1234;
 const fs = require('fs');
@@ -12,6 +13,7 @@ var testPy;
 var testC;
 var testCPP;
 var testJava;
+var codeLanguage = 0;
 
 fs.readFile('./SavedCode/test.py', 'utf8', (err, data) => {
 	if (err) {
@@ -42,7 +44,7 @@ fs.readFile('./SavedCode/testJava.txt', 'utf8', (err, data) => {
 	testJava = data;
 });
 
-var codeLanguage = 0;
+
 // directorul 'views' va conține fișierele .ejs (html + js executat la server)
 app.set('view engine', 'ejs');
 // suport pentru layout-uri - implicit fișierul care reprezintă template-ul site-ului este views/layout.ejs
@@ -54,11 +56,13 @@ app.use(bodyParser.json());
 // utilizarea unui algoritm de deep parsing care suportă obiecte în obiecte
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
 // la accesarea din browser adresei http://localhost:6789/ se va returna textul 'Hello World'
 // proprietățile obiectului Request - req - https://expressjs.com/en/api.html#req
 // proprietățile obiectului Response - res - https://expressjs.com/en/api.html#res
 app.get('/favicon.ico', (req, res) => {
-	res.sendFile("/home/ix_andrei/Documents/Facultate/AN3SEM2/OnlineCompilerPW/PW-Online-Compiler/public/images/favicon.ico");
+	//res.sendFile("/home/ix_andrei/Documents/Facultate/AN3SEM2/OnlineCompilerPW/PW-Online-Compiler/public/images/favicon.ico");
+	res.sendFile("/public/images/favicon.ico");
 });
 
 
@@ -116,7 +120,7 @@ app.post('/run-input', (req, res) => {
 				return console.log(err);
 		});
 	}
-	else{
+	else {
 		fs.writeFile('./SavedCode/Main' + extension, req.body.inputCode, function (err) {
 			if (err)
 				return console.log(err);
@@ -258,7 +262,7 @@ app.post('/run-input', (req, res) => {
 		childJava.on('close', (code) => {
 			//console.log(`child process close all stdio with code ${code}`);
 			if (dataToSend === null) {
-				const program = child_process.spawn('java', ['-classpath','./SavedCode/','Main'])
+				const program = child_process.spawn('java', ['-classpath', './SavedCode/', 'Main'])
 				program.stdout.on('data', function (data) {
 					//console.log(`stdout:${data}`);
 					dataToSend = data.toString();
@@ -341,5 +345,7 @@ app.get('/java', (req, res) => {
 		language: 3,
 	});
 });
+
+
 
 app.listen(port, () => console.log(`Serverul rulează la adresa http://localhost:1234/home`));

@@ -116,7 +116,7 @@ body, html {
 
 #inputCode {
     float: left;
-    width: 88vh;
+    width: 45%;
     padding: 10px;
     height: 65vh;
     border-left: none;
@@ -128,7 +128,7 @@ body, html {
 #highlighting {
     position: absolute;
     float: left;
-    width: 87vh;
+    width: 45%;
     padding: 10px;
     height: 65vh;
     margin-top: 46px;
@@ -262,6 +262,7 @@ textarea:focus, input:focus {
     z-index: 0;
     border: 0;
     resize: none;
+    
 }
 
 #inputCode {
@@ -275,12 +276,18 @@ textarea:focus, input:focus {
     resize: none;
 }
 
-#inputCode, #highlighting {
+#inputCode {
     overflow: auto;
     white-space: nowrap;
+    tab-size: 4;
     /* Allows textarea to scroll horizontally */
 }
-
+#highlighting {
+    overflow: hidden;
+    white-space: nowrap;
+    tab-size: 4;
+    /* Allows textarea to scroll horizontally */
+}
 pre {
     /*
     white-space: -moz-pre-wrap; /* Mozilla, supported since 1999 
@@ -291,16 +298,17 @@ pre {
     white-space: pre-line;*/
     text-align: left;
 }
-
+ /*
 code {
+    
     white-space: -moz-pre-wrap;
-    /* Mozilla, supported since 1999 */
+    /* Mozilla, supported since 1999 
     white-space: -pre-wrap;
-    /* Opera */
+    /* Opera 
     white-space: -o-pre-wrap;
-    /* Opera */
+    /* Opera 
     white-space: pre-wrap;
-    /* CSS3 - Text module (Candidate Recommendation) http://www.w3.org/TR/css3-text/#white-space */
+    /* CSS3 - Text module (Candidate Recommendation) http://www.w3.org/TR/css3-text/#white-space 
     word-wrap: break-word;
-    /* IE 5.5+ */
-}
+    /* IE 5.5+ 
+}*/

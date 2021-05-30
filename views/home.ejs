@@ -4,7 +4,8 @@
             <li id="python" class="<%= (language==0)? " active": "inactive" %>"><a href="/python">Py</a></li>
             <li id="c" class="<%= (language==1)? " active": "inactive" %>"><a href="/c">C</a></li>
             <li id="cplus" class="<%= (language==2)? " active": "inactive" %>"><a href="/cplus">C++</a></li>
-            <li id="java" class="<%= (language==3)? " active": "inactive" %>"><a href="java">Java</a></li>
+            <li id="java" class="<%= (language==3)? " active": "inactive" %>"><a href="/java">Java</a></li>
+            <li id="java" onclick="downloada('data','data','txt');" class="<%= (language==3)? " active": "inactive" %>"><a href="/files">Down</a></li>
         </ul>
     </div>
 
@@ -18,11 +19,11 @@
 
             <div id ="container">
                 <%if(inputCode){%>
-                    <textarea onscroll="scrollFunction()" id="inputCode" name="inputCode" class="column1 editor"
+                    <textarea  onkeydown="check_tab(this, event);" id="inputCode" name="inputCode" class="column1 editor"
                         oninput="update(this.value);" spellcheck="false"
                         style="background-color: rgba(0, 0, 0, 0);"><%= inputCode %></textarea>
                     <%}else{%>
-                        <textarea onscroll="scrollFunction()" id="inputCode" name="inputCode" class="column1 editor"
+                        <textarea   onkeydown="check_tab(this, event);" id="inputCode" name="inputCode" class="column1 editor"
                             oninput="update(this.value);" spellcheck="false"
                             style="background-color: rgba(0, 0, 0, 0);"></textarea>
                         <%}%>
@@ -33,7 +34,18 @@
                                 <span>Run</span>
                             </button>
                 <pre id="highlighting" aria-hidden="true" width="30">
-                    <code class="language-cpp" id="highlighting-content"></code>
+                    <code 
+                        <%if(language==0){%>
+                            class="language-py"
+                        <%}else if(language==1){%>   
+                            class="language-c"
+                        <%}else if(language==2){%>   
+                            class="language-cpp"
+                        <%}else if(language==3){%>   
+                            class="language-java"
+                        <%}%>
+                        id="highlighting-content">
+                    </code>
                 </pre>
             </div>
         </form>
