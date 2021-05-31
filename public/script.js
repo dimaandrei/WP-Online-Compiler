@@ -84,8 +84,20 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     document.getElementById('inputfile').addEventListener('change', loadDoc, false);
-
-
+    /*
+    document.getElementById('fileDownload').addEventListener('click', function () {
+        var fileContent = document.getElementById("fileDownload");
+        fileContent.setAttribute("href","data:text/.cpp;charset=utf-8," +document.getElementById('inputCode').value.toString());
+    });
+    document.getElementById('fileDownload').addEventListener('click', function () {
+        var link= document.createElement("a");
+        link.download="main.cpp";
+        link.href = "data:text/cpp, "+document.getElementById('inputCode').value;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        delete link;
+    });*/
 }, false);
 
 

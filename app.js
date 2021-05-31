@@ -8,6 +8,7 @@ var dir =  process.cwd();
 const port = 1234;
 const fs = require('fs');
 const { Console } = require('console');
+const { mainModule } = require('process');
 
 var testPy;
 var testC;
@@ -68,6 +69,7 @@ app.get('/favicon.ico', (req, res) => {
 
 app.get('/home', (req, res) => {
 	//res.locals.activ=0;
+	codeLanguage=0;
 	res.render('home', {
 		title: "Home",
 		activ: 0,
@@ -75,6 +77,7 @@ app.get('/home', (req, res) => {
 		outputResult: null,
 		lineNr: null,
 		language: codeLanguage,
+		downloadName:"main.py",
 	})
 });
 
@@ -146,6 +149,7 @@ app.post('/run-input', (req, res) => {
 				outputResult: dataToSend,
 				lineNr: req.body.lines,
 				language: codeLanguage,
+				downloadName:null,
 			});
 		});
 	} else if (codeLanguage === 1) {
@@ -183,6 +187,7 @@ app.post('/run-input', (req, res) => {
 						outputResult: dataToSend,
 						lineNr: req.body.lines,
 						language: codeLanguage,
+						downloadName:null,
 					});
 				});
 			} else {
@@ -193,6 +198,7 @@ app.post('/run-input', (req, res) => {
 					outputResult: dataToSend,
 					lineNr: req.body.lines,
 					language: codeLanguage,
+					downloadName:null,
 				});
 			}
 		});
@@ -231,6 +237,7 @@ app.post('/run-input', (req, res) => {
 						outputResult: dataToSend,
 						lineNr: req.body.lines,
 						language: codeLanguage,
+						downloadName:null,
 					});
 				});
 			} else {
@@ -241,6 +248,7 @@ app.post('/run-input', (req, res) => {
 					outputResult: dataToSend,
 					lineNr: req.body.lines,
 					language: codeLanguage,
+					downloadName:null,
 				});
 			}
 		});
@@ -278,6 +286,7 @@ app.post('/run-input', (req, res) => {
 						outputResult: dataToSend,
 						lineNr: req.body.lines,
 						language: codeLanguage,
+						downloadName:null,
 					});
 				});
 			} else {
@@ -288,6 +297,7 @@ app.post('/run-input', (req, res) => {
 					outputResult: dataToSend,
 					lineNr: req.body.lines,
 					language: codeLanguage,
+					downloadName:null,
 				});
 			}
 		});
@@ -304,6 +314,7 @@ app.get('/python', (req, res) => {
 		outputResult: null,
 		lineNr: req.body.lines,
 		language: 0,
+		downloadName:"main.py",
 	});
 });
 
@@ -316,6 +327,7 @@ app.get('/c', (req, res) => {
 		outputResult: null,
 		lineNr: req.body.lines,
 		language: 1,
+		downloadName:"main.c",
 	});
 });
 
@@ -328,6 +340,7 @@ app.get('/cplus', (req, res) => {
 		outputResult: null,
 		lineNr: req.body.lines,
 		language: 2,
+		downloadName:"main.cpp",
 	});
 });
 
@@ -340,6 +353,7 @@ app.get('/java', (req, res) => {
 		outputResult: null,
 		lineNr: req.body.lines,
 		language: 3,
+		downloadName:"main.java",
 	});
 });
 
@@ -364,6 +378,23 @@ app.post('/ajaxxx', (req, res) => {
 	res.send(req.body.code);
 	
 });
-
+app.get('/test', function(req, res) {
+	switch (codeLanguage) {
+		case 0:
+			res.sendFile('SavedCode/main.py', {root: __dirname,downloadName:"main.py" });
+			break;
+		case 1:
+			res.sendFile('SavedCode/main.c', {root: __dirname,downloadName:"main.c" });
+			break;
+		case 2:
+			res.sendFile('SavedCode/main.cpp', {root: __dirname,downloadName:"main.cpp" });
+			break;
+		case 3:
+			res.sendFile('SavedCode/Main.java', {root: __dirname,downloadName:"main.java" });
+			break;
+		default:
+			res.sendFile('SavedCode/main.py', {root: __dirname,downloadName:"main.py" });
+	}
+});
 
 app.listen(port, () => console.log(`Serverul rulează la adresa http://localhost:1234/home`));

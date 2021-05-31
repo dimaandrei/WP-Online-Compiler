@@ -5,12 +5,17 @@
             <li id="c" class="<%= (language==1)? " active": "inactive" %>"><a href="/c">C</a></li>
             <li id="cplus" class="<%= (language==2)? " active": "inactive" %>"><a href="/cplus">C++</a></li>
             <li id="java" class="<%= (language==3)? " active": "inactive" %>"><a href="/java">Java</a></li>
-            <li id="file" ><input type="file" style="display:none;" id="inputfile" accept=".java,.cpp,.c,.py" />
+            <li id="fileUpload" ><input type="file" style="display:none;" id="inputfile" accept=".java,.cpp,.c,.py" />
                 <a href="javascript:document.getElementById('inputfile').click(); ">Upload</a></li>
+            <li><a id="fileDownload" href="/test" <%if(downloadName){%>download="<%=downloadName%>"<%}else{%>download="fileName.txt"<%}%>>Save</a></a></li>
+            
+            
+            <!--<a id="fileDownload" href="/download" download>-->
         </ul>
     </div>
 
     <div class="row">
+        <div>
         <form method="POST" action="/run-input">
 
             <textarea class="column0" id="lines" name="lines" spellcheck="false"
@@ -50,11 +55,13 @@
                 </pre>
             </div>
         </form>
-
+        </div>
+        <div>
         <textarea class="column2" id="console" spellcheck="false" style="background-color: rgba(0, 0, 0, 0);"
             readonly><%if(outputResult){%><%=outputResult%><%}%></textarea>
+        </div>
 
-
-    </div>
+    </div><br><br>
     <hr>
+    <br><br>
 </div>
