@@ -82,6 +82,10 @@ document.addEventListener("DOMContentLoaded", function () {
             lineNumbers();
         }
     });
+
+    document.getElementById('inputfile').addEventListener('change', readFile, false);
+
+
 }, false);
 
 
@@ -130,19 +134,59 @@ function get() {
 
     xhttp.open("POST", 'http://localhost:1234/run-input', true);
     xhttp.send();
+}
+/*
+function readSingleFile(e) {
+    var file = e.target.files[0];
+    if (!file) {
+        return;
+    }
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        var contents = e.target.result;
+        displayContents(contents);
+    };
+    reader.readAsText(file);
+}
 
+function displayContents(contents) {
+    var element = document.getElementById('file-content');
+    element.textContent = contents;
+}*/
+
+
+
+function readFile(evt) {
+    var files = evt.target.files;
+    var file = files[0];
+    var reader = new FileReader();
+    reader.onload = function (event) {
+        console.log(event.target.result);
+    }
+    reader.readAsText(file)
 }
 
 function loadDoc() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("demo").innerHTML = this.responseText;
+            document.getElementById("inputCode").innerHTML = this.responseText;
+            update(document.getElementById('inputCode').value);
+            lineNumbers();
         }
     };
-    xhttp.open("GET", "ajax_info.txt", true);
-    xhttp.send();
+    var fullPath = document.getElementById("inputfile").value;
+    const json = {
+        "email": "eve.holt@reqres.in",
+        "password": "cityslicka"
+    };
+    console.log(fullPath);
+    xhttp.open("POST", "/ajaxxx", true);
+    xhttp.setRequestHeader("Content-type", "application/json; charset=utf-8");
+    xhttp.send(JSON.stringify(json));
 }
+
+
 
 function update(text) {
     let result_element = document.querySelector("#highlighting-content");
@@ -150,6 +194,7 @@ function update(text) {
     result_element.innerHTML = text.replace(new RegExp("&", "g"), "&").replace(new RegExp("<", "g"), "&lt;"); /* Global RegExp */
     // Syntax Highlight
     Prism.highlightElement(result_element);
+
 }
 
 function check_tab(element, event) {

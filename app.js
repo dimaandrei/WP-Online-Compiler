@@ -66,9 +66,6 @@ app.get('/favicon.ico', (req, res) => {
 });
 
 
-
-
-
 app.get('/home', (req, res) => {
 	//res.locals.activ=0;
 	res.render('home', {
@@ -346,6 +343,11 @@ app.get('/java', (req, res) => {
 	});
 });
 
+app.post('/ajaxxx', (req, res) => {
+	
+	console.log(req.body)
+	res.send("nimix");
+});
 
 
 app.listen(port, () => console.log(`Serverul rulează la adresa http://localhost:1234/home`));
