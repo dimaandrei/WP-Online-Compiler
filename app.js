@@ -36,7 +36,7 @@ fs.readFile('./SavedCode/test.cpp', 'utf8', (err, data) => {
 	}
 	testCPP = data;
 });
-fs.readFile('./SavedCode/testJava.txt', 'utf8', (err, data) => {
+fs.readFile('./SavedCode/testJava.java', 'utf8', (err, data) => {
 	if (err) {
 		console.error(err)
 		return
@@ -344,9 +344,25 @@ app.get('/java', (req, res) => {
 });
 
 app.post('/ajaxxx', (req, res) => {
+	//console.log(req.body)
+	switch (req.body.extension) {
+		case "py":
+			codeLanguage = 0;
+			break;
+		case "c":
+			codeLanguage = 1;
+			break;
+		case "cpp":
+			codeLanguage = 2;
+			break;
+		case "java":
+			codeLanguage = 3;
+			break;
+		default:
+			codeLanguage = 0;
+	}
+	res.send(req.body.code);
 	
-	console.log(req.body)
-	res.send("nimix");
 });
 
 

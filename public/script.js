@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    document.getElementById('inputfile').addEventListener('change', readFile, false);
+    document.getElementById('inputfile').addEventListener('change', loadDoc, false);
 
 
 }, false);
@@ -166,24 +166,29 @@ function readFile(evt) {
     reader.readAsText(file)
 }
 
-function loadDoc() {
+function loadDoc(evt) {
     var xhttp = new XMLHttpRequest();
+    var files = evt.target.files;
+    var file = files[0];
+    var reader = new FileReader();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
+            
             document.getElementById("inputCode").innerHTML = this.responseText;
             update(document.getElementById('inputCode').value);
             lineNumbers();
         }
     };
-    var fullPath = document.getElementById("inputfile").value;
-    const json = {
-        "email": "eve.holt@reqres.in",
-        "password": "cityslicka"
-    };
-    console.log(fullPath);
-    xhttp.open("POST", "/ajaxxx", true);
-    xhttp.setRequestHeader("Content-type", "application/json; charset=utf-8");
-    xhttp.send(JSON.stringify(json));
+    
+    var extension = document.getElementById("inputfile").value.split('.')[1];
+    console.log(extension);
+    reader.onload = function (event) {
+        console.log(event.target.result);
+        xhttp.open("POST", "/ajaxxx", true);
+        xhttp.setRequestHeader("Content-type", "application/json; charset=utf-8");
+        xhttp.send(JSON.stringify({"extension":extension,"code":event.target.result}));
+    }
+    reader.readAsText(file)
 }
 
 

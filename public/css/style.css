@@ -70,6 +70,7 @@ body, html {
     text-align: center;
 }
 
+
 .menuNav ul {
     list-style-type: none;
     margin: 0;
@@ -108,7 +109,7 @@ body, html {
 
 .column0 {
     float: left;
-    width: 4%;
+    width: 72px;
     padding: 10px;
     height: 65vh;
     border-right: none;
@@ -116,7 +117,8 @@ body, html {
 
 #inputCode {
     float: left;
-    width: 45%;
+    width: 44%;
+   
     padding: 10px;
     height: 65vh;
     border-left: none;
@@ -128,7 +130,7 @@ body, html {
 #highlighting {
     position: absolute;
     float: left;
-    width: 45%;
+    width: 44%;
     padding: 10px;
     height: 65vh;
     margin-top: 46px;
@@ -137,14 +139,20 @@ body, html {
     left:0;
     margin-left: 56px;
 }
-
 #container {
     position: relative;
+    
 }
-
+/*
+#container {
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+}
+*/
 .column2 {
     float: right;
-    width: 52%;
+    width: 51%;
     padding: 10px;
     height: 65vh;
     position: relative;
@@ -165,8 +173,20 @@ body, html {
     .column {
         width: 100%;
     }
+    
 }
 
+@media screen and (max-width: 1200px) {
+    
+    #console{
+        display: block;
+        width: 100%;
+    }
+    #inputCode{
+        display: block;
+        width: 95%;
+    }
+}
 footer {
     position: fixed;
     left: 0;
