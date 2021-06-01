@@ -1,8 +1,9 @@
+// Online C++ compiler to run C++ program online
 #include <iostream>
-using namespace std;
-int main(void)
-{
 
-	cout<<"Hello, World"<<endl;
-	return 0;
+int main() {
+    // Write C++ code here
+    std::cout << "Hello, World!";
+
+    return 0;
 }
