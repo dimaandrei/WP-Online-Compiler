@@ -206,11 +206,11 @@ function update(text) {
     console.log(text);
     let result_element = document.querySelector("#highlighting-content");
     // Update code
-    //result_element.innerHTML = text.replace(new RegExp("&", "g"), "&").replace(new RegExp("<", "g"), "&lt;"); /* Global RegExp */
-    result_element.innerHTML = text.replace(new RegExp("<", "g"), "&lt;").replace(new RegExp("\n", "g"), "<br>").replace(new RegExp(" ", "g"), "&nbsp;").replace(new RegExp("\t", "g"), "&nbsp;&nbsp;&nbsp;&nbsp;");
+    result_element.innerHTML = text.replace(new RegExp("&", "g"), "&").replace(new RegExp("<", "g"), "&lt;"); /* Global RegExp */
+    //result_element.innerHTML = text.replace(new RegExp("<", "g"), "&lt;").replace(new RegExp("\n", "g"), "<br>").replace(new RegExp(" ", "g"), "&nbsp;").replace(new RegExp("\t", "g"), "&nbsp;&nbsp;&nbsp;&nbsp;");
 
     // Syntax Highlight
-    //Prism.highlightElement(result_element);
+    Prism.highlightElement(result_element);
 
 }
 
