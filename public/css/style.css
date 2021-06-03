@@ -70,7 +70,6 @@ body, html {
     text-align: center;
 }
 
-
 .menuNav ul {
     list-style-type: none;
     margin: 0;
@@ -118,12 +117,11 @@ body, html {
 #inputCode {
     float: left;
     width: 44%;
-   
     padding: 10px;
     height: 65vh;
     border-left: none;
     position: absolute;
-    left:0;
+    left: 0;
     margin-left: 56px;
 }
 
@@ -135,14 +133,14 @@ body, html {
     height: 65vh;
     margin-top: 46px;
     background-color: transparent;
-    
-    left:0;
+    left: 0;
     margin-left: 56px;
 }
+
 #container {
     position: relative;
-    
 }
+
 /*
 #container {
     position: relative;
@@ -157,7 +155,6 @@ body, html {
     padding: 10px;
     height: 65vh;
     position: relative;
-    
 }
 
 /* Clear floats after the columns */
@@ -174,16 +171,14 @@ body, html {
     .column {
         width: 100%;
     }
-    
 }
 
 @media screen and (max-width: 1200px) {
-    
-    #console{
+    #console {
         display: block;
         width: 100%;
     }
-    #inputCode{
+    #inputCode {
         display: block;
         width: 95%;
     }
@@ -191,8 +186,8 @@ body, html {
         display: block;
         width: 95%;
     }
-   
 }
+
 footer {
     position: fixed;
     left: 0;
@@ -276,11 +271,13 @@ textarea:focus, input:focus {
     font-family: monospace;
     line-height: normal;
 }
-#lines{
+
+#lines {
     font-size: 14pt;
     font-family: monospace;
     line-height: normal;
 }
+
 #inputCode {
     z-index: 1;
 }
@@ -289,7 +286,6 @@ textarea:focus, input:focus {
     z-index: 0;
     border: 0;
     resize: none;
-    
 }
 
 #inputCode {
@@ -309,12 +305,14 @@ textarea:focus, input:focus {
     tab-size: 4;
     /* Allows textarea to scroll horizontally */
 }
+
 #highlighting {
     overflow: hidden;
     white-space: nowrap;
     tab-size: 4;
     /* Allows textarea to scroll horizontally */
 }
+
 pre {
     /*
     white-space: -moz-pre-wrap; /* Mozilla, supported since 1999 
@@ -325,7 +323,8 @@ pre {
     white-space: pre-line;*/
     text-align: left;
 }
- /*
+
+/*
 code {
     
     white-space: -moz-pre-wrap;
@@ -338,4 +337,130 @@ code {
     /* CSS3 - Text module (Candidate Recommendation) http://www.w3.org/TR/css3-text/#white-space 
     word-wrap: break-word;
     /* IE 5.5+ 
-}*/
+}
+*/
+
+#highlighting-content {
+    color: #f1f1f1;
+}
+
+
+
+.btnSubmitQuiz {
+    z-index: 0;
+    margin: 0;
+    position: absolute;
+    left: 48%;
+    -ms-transform: translateX(-33%);
+    transform: translateX(-33%);
+    border-radius: 4px;
+    background-color: #f4511e;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 180px;
+    height: 80px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.btnSubmitQuiz span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+    top: -10px;
+}
+
+.btnSubmitQuiz span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.btnSubmitQuiz:hover span {
+    padding-right: 25px;
+}
+
+.btnSubmitQuiz:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+.form-content{
+    padding-top: 50px;
+    padding-left: 100px;
+}
+#quiz {
+    padding-bottom: 100px;
+    padding-left: 100px;
+    padding-right: 150px;
+    color:khaki;
+}
+
+#quiz-result {
+    text-align: center;
+    color: gold;
+    margin-left:-50px;
+    margin-top: -50px;
+}
+legend{
+    font-size: 25px;
+}
+#content-about{
+    text-align: center;
+    margin-top: 100px;
+    margin-left:-50px;
+    color:aqua;
+}
+.aboutButton {
+    z-index: 0;
+    margin: 0;
+    position: absolute;
+    left: 48%;
+    -ms-transform: translateX(-33%);
+    transform: translateX(-33%);
+    border-radius: 4px;
+    background-color:darkcyan;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 150px;
+    height: 50px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.aboutButton span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+    top: -10px;
+}
+
+.aboutButton span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.aboutButton:hover span {
+    padding-right: 25px;
+}
+
+.aboutButton:hover span:after {
+    opacity: 1;
+    right: 0;
+}

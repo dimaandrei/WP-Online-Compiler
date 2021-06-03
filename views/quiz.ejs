@@ -1,0 +1,27 @@
+<div id="quiz">
+    <br>
+    <form action="/rezultat-quiz" method="post">
+        <fieldset>
+            <legend> Short Quiz: </legend><br>
+            <div class="form-content">
+                <%# this will output the questions%>
+                    <% for(var i=0; i <intrebari.length; i++) { %>
+                        <label for="<%=i%>">
+                            <%= intrebari[i]["intrebare"] %>
+                        </label><br>
+                        <% for(var j=0; j <intrebari[i]["variante"].length; j++) { %>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" id="<%- i %>" name="<%- i %>" value="<%= j %>" />&nbsp;
+                            <%- intrebari[i]["variante"][j]%> <br>
+                                <% } %>
+                                    <br>
+                                    <% } %>
+
+            </div><br>
+            <button class="btnSubmitQuiz" type="submit">
+                <span>Submit answers</span>
+            </button>
+
+            <br>
+        </fieldset>
+    </form>
+</div>

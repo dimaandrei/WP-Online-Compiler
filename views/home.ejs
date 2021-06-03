@@ -7,7 +7,7 @@
             <li id="java" class="<%= (language==3)? " active": "inactive" %>"><a href="/java">Java</a></li>
             <li id="fileUpload" ><input type="file" style="display:none;" id="inputfile" accept=".java,.cpp,.c,.py" />
                 <a href="javascript:document.getElementById('inputfile').click(); ">Upload</a></li>
-            <li><a id="fileDownload" href="/test" <%if(downloadName){%>download="<%=downloadName%>"<%}else{%>download="fileName.txt"<%}%>>Save</a></a></li>
+            <li><a id="fileDownload" href="/save-file" <%if(downloadName){%>download="<%=downloadName%>"<%}else{%>download="fileName.txt"<%}%>>Save</a></a></li>
             
             
             <!--<a id="fileDownload" href="/download" download>-->

@@ -81,10 +81,43 @@ app.get('/home', (req, res) => {
 	})
 });
 
-app.get('/how', (req, res) => {
-	res.render('how', {
-		title: "How to",
-		activ: 1
+app.get('/quiz', (req, res) => {
+	fs.readFile('intrebari.json', (err, data) => {
+		if (err) {
+			res.send('Nu există întrebări!');
+			return;
+		}
+		res.render('quiz', {
+			title:"Quiz",
+			activ:1,
+			intrebari: JSON.parse(data)
+		});
+	});
+	
+});
+
+app.post('/rezultat-quiz', (req, res) => {
+	fs.readFile('intrebari.json', (err, data) => {
+		if (err) {
+			res.send('Nu exista intrebari!');
+			return;
+		}
+		const listaIntrebari = JSON.parse(data);
+		const body = req.body;
+		const keys = Object.keys(body);
+
+		var raspCor = 0;
+		for (var i = 0; i < keys.length; ++i) {
+			let k = keys[i];
+			if (listaIntrebari[k].corect == body[k])
+				raspCor++;
+		}
+		res.render('rezultat-quiz', {
+			title:"Quiz",
+			activ:1,
+			intrebari: listaIntrebari,
+			raspunsuri_corecte: raspCor
+		});
 	});
 });
 
@@ -357,7 +390,7 @@ app.get('/java', (req, res) => {
 	});
 });
 
-app.post('/ajaxxx', (req, res) => {
+app.post('/upload-file', (req, res) => {
 	//console.log(req.body)
 	switch (req.body.extension) {
 		case "py":
@@ -378,7 +411,7 @@ app.post('/ajaxxx', (req, res) => {
 	res.send(req.body.code);
 	
 });
-app.get('/test', function(req, res) {
+app.get('/save-file', function(req, res) {
 	switch (codeLanguage) {
 		case 0:
 			res.sendFile('SavedCode/main.py', {root: __dirname,downloadName:"main.py" });
@@ -396,5 +429,8 @@ app.get('/test', function(req, res) {
 			res.sendFile('SavedCode/main.py', {root: __dirname,downloadName:"main.py" });
 	}
 });
-
+app.get('/site-details', function(req, res) {
+	let stringAbout="This website is cool and is gonna have more features in future."
+	res.send(JSON.stringify({ "contentAbout": stringAbout}));
+});
 app.listen(port, () => console.log(`Serverul rulează la adresa http://localhost:1234/home`));

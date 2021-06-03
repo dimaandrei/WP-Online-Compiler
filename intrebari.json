@@ -1,22 +1,22 @@
 [
     {
-        "intrebare":"1.Va plac fructele?",
-        "variante": ["Da", "Nu", "Ce sunt alea?", "Carnea e baza!"],
+        "intrebare":"1.C++ este un limbaj de programare:",
+        "variante": ["Compilat", "Interpretat", "Compilat si interpretat", "Nu stiu.."],
         "corect": 0
     },
     {
-        "intrebare": "2.Rosiile sunt fructe?",
-        "variante": ["Da", "Nu", "Poate", "Nu stiu!"],
-        "corect": 0
-    },
-    {
-        "intrebare": "3.Bananele sunt radioactive?",
-        "variante": ["Da", "Nu", "Nu sunt documentat suficient!", "Imposibil!"],
-        "corect": 0
-    },
-    {
-        "intrebare": "4.Castravetii sunt fructe sau legume?",
-        "variante": ["Legume", "Fructe", "Nu cunosc."],
+        "intrebare": "2.Python este un limbaj de programare:",
+        "variante": ["Compilat", "Interpretat", "Compilat si interpretat", "Nu stiu.."],
         "corect": 1
+    },
+    {
+        "intrebare": "3.C este un limbaj de programare:",
+        "variante": ["Compilat", "Interpretat", "Compilat si interpretat", "Nu stiu.."],
+        "corect": 0
+    },
+    {
+        "intrebare": "4.Java este un limbaj de programare:",
+        "variante": ["Compilat", "Interpretat", "Compilat si interpretat", "Nu stiu.."],
+        "corect": 2
     }
 ]
